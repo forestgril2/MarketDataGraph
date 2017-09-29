@@ -12,11 +12,12 @@ Rectangle {
         anchors.fill: parent
         onClicked: {
             console.log("####")
-            repeater.model = page_root.screenBars(page_root.height, page_root.width, repeater.barwidth)
+            bars.model = page_root.screenBars(page_root.height, page_root.width, bars.barwidth)
         }
     }
+
     Repeater {
-        id: repeater
+        id: bars
         property double barwidth: 10
 
         model: page_root.screenBars(page_root.height, page_root.width, barwidth)
@@ -39,26 +40,50 @@ Rectangle {
                 x: index * width
                 y: candle.upBar ? candle.close : candle.open
 
-                width: repeater.barwidth
+                width: bars.barwidth
             }
 
             Rectangle {
                 id: wick
 
                 anchors.horizontalCenter: body.horizontalCenter
-                width: repeater.barwidth/3
+                width: bars.barwidth/3
                 height: candle.low - candle.high
                 y: candle.high + candle.height
                 color: body.color
             }
 
             Component.onCompleted: {
-                open = repeater.model[index][0]
-                close = repeater.model[index][1]
-                high = repeater.model[index][2]
-                low = repeater.model[index][3]
+                open = bars.model[index][0]
+                close = bars.model[index][1]
+                high = bars.model[index][2]
+                low = bars.model[index][3]
             }
         }
+    }
+
+//    Repeater {
+//        id: scaleV
+//        property int number: 10
+//        model: number
+//        z: 10
+
+//        Rectangle {
+//            id: mark
+
+//            anchors.left: page_root.left
+//            width: 20
+//            height: 2
+//            y: index * page_root.height/scaleV.number - height/2
+//            color: "black"
+//        }
+//    }
+
+    GraphScale {
+        parent: page_root
+        number: 100
+        length: 10
+        thickness: 2
     }
 
     function screenBars(height, width, barwidth) {
