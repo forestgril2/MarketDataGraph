@@ -1,28 +1,38 @@
 import QtQuick 2.0
 
-Repeater {
-    id: scale
+Rectangle {
+    id: base
 
-    property int number
-    property int length
-    property int thickness
+    property int number: 10
+    property int length: 50
+    property int thickness: 5
+
+    color: "transparent"
+    width: 100
+
     anchors {
         left: parent.left
-        right: parent.right
         top: parent.top
         bottom: parent.bottom
     }
 
-    model: number
-    z: 10
+    Column {
+        id: scale
 
-    Rectangle {
-        id: mark
+        spacing: base.height/base.number
+        anchors.fill: parent
 
-        anchors.left: parent.left
-        width: scale.length
-        height: scale.thickness
-        y: scale.index * parent.height/scale.number - height/2
-        color: "black"
+        Repeater {
+            model: 10
+            z: 10
+
+            Rectangle {
+                id: mark
+
+                width: base.length
+                height: base.thickness
+                color: "black"
+            }
+        }
     }
 }

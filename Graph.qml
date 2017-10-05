@@ -80,10 +80,6 @@ Rectangle {
 //    }
 
     GraphScale {
-        parent: page_root
-        number: 100
-        length: 10
-        thickness: 2
     }
 
     function screenBars(height, width, barwidth) {
