@@ -5,13 +5,12 @@ Rectangle {
 
     property int number: 10
     property int length: 50
-    property int thickness: 5
+    property int thickness: 2
 
     color: "transparent"
-    width: 100
+    width: length
 
     anchors {
-        left: parent.left
         top: parent.top
         bottom: parent.bottom
     }
@@ -19,11 +18,14 @@ Rectangle {
     Column {
         id: scale
 
-        spacing: base.height/base.number
-        anchors.fill: parent
+        spacing: base.height/base.number - thickness
+        anchors {
+            fill: parent
+            topMargin: -thickness/2
+        }
 
         Repeater {
-            model: 10
+            model: +number
             z: 10
 
             Rectangle {

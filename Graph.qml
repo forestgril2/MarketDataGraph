@@ -62,24 +62,39 @@ Rectangle {
         }
     }
 
-//    Repeater {
-//        id: scaleV
-//        property int number: 10
-//        model: number
-//        z: 10
-
-//        Rectangle {
-//            id: mark
-
-//            anchors.left: page_root.left
-//            width: 20
-//            height: 2
-//            y: index * page_root.height/scaleV.number - height/2
-//            color: "black"
-//        }
-//    }
+    GraphScale {
+        number: 100
+        length: 20
+        thickness: 1
+        anchors.left: parent.left
+    }
 
     GraphScale {
+        number: 10
+        length: 30
+        thickness: 2
+        anchors.left: parent.left
+    }
+
+    GraphScale {
+        number: 20
+        length: 30
+        thickness: 1
+        anchors.left: parent.left
+    }
+
+    GraphScale {
+        number: 10
+        length: 30
+        thickness: 2
+        anchors.right: parent.right
+    }
+
+    GraphScale {
+        number: 100
+        length: 20
+        thickness: 1
+        anchors.right: parent.right
     }
 
     function screenBars(height, width, barwidth) {
