@@ -6,6 +6,7 @@ Rectangle {
     property int number: 10
     property int length: 50
     property int thickness: 2
+    property bool numbersVisible: false
 
     color: "transparent"
     width: length
@@ -24,16 +25,31 @@ Rectangle {
             topMargin: -thickness/2
         }
 
+        Component {
+            id: mark
+
+            Rectangle {
+                width: base.length
+                height: base.thickness
+                color: "black"
+            }
+        }
+
+        Component {
+            id: scaleNumber
+
+            Text {
+                text: "66"
+            }
+        }
+
         Repeater {
             model: +number
             z: 10
 
-            Rectangle {
-                id: mark
-
-                width: base.length
-                height: base.thickness
-                color: "black"
+            Row {
+                Loader {sourceComponent: scaleNumber; scaleNumber.text: "77"}
+                Loader {sourceComponent: mark}
             }
         }
     }
